@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<AssemblySearchPaths>
+			$(AssemblyPath);
+			$(AssemblySearchPaths)
+		</AssemblySearchPaths>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="0Harmony"></Reference>
+		<Reference Include="Assembly-CSharp"></Reference>
+		<Reference Include="UnityEngine"></Reference>
+		<Reference Include="UnityEngine.CoreModule"></Reference>
+		<Reference Include="UnityEngine.IMGUIModule"></Reference>
+		<Reference Include="UnityEngine.TextRenderingModule"></Reference>
+	</ItemGroup>
+</Project>
+

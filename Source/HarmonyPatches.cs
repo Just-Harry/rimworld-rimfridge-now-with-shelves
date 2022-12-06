@@ -276,6 +276,86 @@ namespace RimFridge
         }
     }
 
+	public static class DisplayStackedItemsNicelyInFridges
+	{
+		[HarmonyPatch(typeof(GenThing), nameof(GenThing.TrueCenter), new[] {typeof(Thing)})]
+		public static class MungeTrueCenterOfItemsInFridges
+		{
+			[HarmonyPostfix]
+			public static Vector3 MungeTrueCenter (Vector3 originalValue, Thing t)
+			{
+				if (t.def.category == ThingCategory.Item && t.Spawned)
+				{
+					var things = t.Map.thingGrid.ThingsListAtFast(t.Position);
+
+					if (things.Count > 2)
+					{
+						var thingID = t.thingIDNumber;
+						int depthInStack = 0;
+						bool haveFridgeInCell = false;
+
+						foreach (var eachThing in things)
+						{
+							haveFridgeInCell = haveFridgeInCell || eachThing is RimFridge_Building;
+							depthInStack += (
+								   eachThing.thingIDNumber < thingID
+								&& eachThing.def.category == ThingCategory.Item
+							) ? 1 : 0;
+						}
+
+						if (haveFridgeInCell)
+						{
+							IntVec3 p = t.Position;
+							Vector3 v = p.ToVector3Shifted();
+							float altitude = t.def.Altitude;
+
+							return new Vector3(
+								v.x,
+								altitude + (float) depthInStack * (3f / 74f) / 10f,
+								v.z + (float) depthInStack / 16f - 0.05f
+							);
+						}
+					}
+				}
+
+				return originalValue;
+			}
+		}
+
+		[HarmonyPatch(typeof(GenMapUI), nameof(GenMapUI.LabelDrawPosFor), new[] {typeof(Thing), typeof(float)})]
+		public static class MakeTheStackCountLabelsReadable
+		{
+			[HarmonyPostfix]
+			public static Vector2 OffsetTheLabels (Vector2 originalValue, Thing thing)
+			{
+				if (thing.def.category == ThingCategory.Item && thing.Spawned)
+				{
+					var things = thing.Map.thingGrid.ThingsListAtFast(thing.Position);
+
+					if (things.Count > 2)
+					{
+						var thingID = thing.thingIDNumber;
+						int depthInStack = -1;
+						bool haveFridgeInCell = false;
+
+						foreach (var eachThing in things)
+						{
+							haveFridgeInCell = haveFridgeInCell || eachThing is RimFridge_Building;
+							depthInStack += (
+								   eachThing.thingIDNumber < thingID
+								&& eachThing.def.category == ThingCategory.Item
+							) ? 1 : 0;
+						}
+
+						originalValue.x += (float) depthInStack * 17.0f;
+ 					}
+				}
+
+				return originalValue;
+			}
+		}
+	}
+
     /*
         [HarmonyPatch(typeof(Dialog_BillConfig), "DoWindowContents", new Type[] {typeof(Rect)})]
         public static class Patch_Dialog_BillConfig_DoWindowContents

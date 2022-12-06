@@ -46,6 +46,9 @@
 						<li>PlantFoodRaw</li>
 						<li>BodyParts</li>
 					</categories>
+					<thingDefs MayRequire="Ludeon.RimWorld.Biotech">
+						<li MayRequire="Ludeon.RimWorld.Biotech">Wastepack</li>
+					</thingDefs>
 					<specialFiltersToDisallow>
 						<li>AllowRotten</li>
 					</specialFiltersToDisallow>

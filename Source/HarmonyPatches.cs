@@ -51,24 +51,6 @@ namespace RimFridge
         }
     }
 
-    [HarmonyPatch(typeof(GameComponentUtility), "StartedNewGame")]
-    static class Patch_GameComponentUtility_StartedNewGame
-    {
-        static void Postfix()
-        {
-            RimFridgeSettingsUtil.ApplyFactor(Settings.PowerFactor.AsFloat);
-        }
-    }
-
-    [HarmonyPatch(typeof(GameComponentUtility), "LoadedGame")]
-    static class Patch_GameComponentUtility_LoadedGame
-    {
-        static void Postfix()
-        {
-            RimFridgeSettingsUtil.ApplyFactor(Settings.PowerFactor.AsFloat);
-        }
-    }
-
     /*[HarmonyPriority(Priority.Last)]
     [HarmonyPatch(typeof(CompRottable), "Active", MethodType.Getter)]
     static class Patch_CompRottable_Freeze

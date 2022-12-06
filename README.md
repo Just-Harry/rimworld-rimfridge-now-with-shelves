@@ -33,4 +33,4 @@ Thanks to everyone who's added/edited code!
 * Demonseed Elite - Refactored code for better compatibility and additional features
 * towhead - Made the fridges hide the uglyness of food
 
-Original Author: Vendan
+Many thanks go towards the original authors of this mod: Vendan, and then Kiame Vivacity.

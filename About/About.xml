@@ -2,7 +2,11 @@
 
 <ModMetaData>
 	<name>[KV] RimFridge</name>
-	<author>Kiame Vivacity</author>
+	<authors>
+		<li>Vendan</li>
+		<li>Kiame Vivacity</li>
+		<li>"Just Harry"</li>
+	</authors>
 	<supportedVersions>
 		<li>1.4</li>
 	</supportedVersions>
@@ -36,7 +40,7 @@ Thanks to everyone who's added/edited code!
 -towhead - Made the fridges hide the uglyness of food
 -kbatbouta - Finding a more efficient way to keep track of what food is stored and frozen in fridges.
 
-Original Author: Vendan</description>
+Many thanks go towards the original authors of this mod: Vendan, and then Kiame Vivacity.</description>
 <packageId>rimfridge.kv.rw</packageId>
 <modDependencies>
     <li>

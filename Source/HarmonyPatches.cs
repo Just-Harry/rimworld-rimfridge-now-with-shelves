@@ -347,7 +347,10 @@ namespace RimFridge
 							) ? 1 : 0;
 						}
 
-						originalValue.x += (float) depthInStack * 17.0f;
+						if (haveFridgeInCell)
+						{
+							originalValue.x += (float) depthInStack * 17.0f;
+						}
  					}
 				}
 

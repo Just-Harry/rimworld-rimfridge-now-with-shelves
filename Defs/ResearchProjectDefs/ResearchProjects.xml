@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ResearchProjectDef>
+		<defName>RimFridge_PowerFactorSetting</defName>
+		<label>Power Factor Setting for RimFridge</label>
+		<description>This is used for the power-factor setting of RimFridge. You shouldn't be able to see this.</description>
+		<baseCost>0</baseCost>
+		<techLevel>Neolithic</techLevel>
+		<recalculatePower>true</recalculatePower>
+		<researchViewX>NaN</researchViewX>
+		<researchViewY>NaN</researchViewY>
+	</ResearchProjectDef>
+</Defs>
+

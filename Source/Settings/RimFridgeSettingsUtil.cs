@@ -1,50 +1,46 @@
 ﻿using RimWorld;
-using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace RimFridge
 {
     internal static class RimFridgeSettingsUtil
     {
-        public static Dictionary<string, float> BaseEnergy { get; set; }
-        public static Dictionary<string, ThingDef> FridgeDefs { get; set; }
-
-        static RimFridgeSettingsUtil()
+        public static void ApplyFactor (float newFactor)
         {
-            BaseEnergy = null;
-        }
+			var powerFactorSetting = DefDatabase<ResearchProjectDef>.GetNamed("RimFridge_PowerFactorSetting");
 
-        private static void CreateBaseEnergyMap()
-        {
-            if (BaseEnergy == null)
-            {
-                BaseEnergy = new Dictionary<string, float>();
-                FridgeDefs = new Dictionary<string, ThingDef>();
-                foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
-                {
-                    if (def.defName.StartsWith("RimFridge"))
-                    {
-                        CompProperties_Power power = def.GetCompProperties<CompProperties_Power>();
-                        if (power != null)
-                        {
-                            BaseEnergy.Add(def.defName, power.basePowerConsumption);
-                            FridgeDefs.Add(def.defName, def);
-                        }
-                    }
-                }
-            }
-        }
+			foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.defName.StartsWith("RimFridge")))
+			{
+				var power = def.GetCompProperties<CompProperties_Power>();
 
-        public static void ApplyFactor(float newFactor)
-        {
-            CreateBaseEnergyMap();
+				if (power == null)
+				{
+					continue;
+				}
 
-            foreach (KeyValuePair<string, float> basePower in BaseEnergy)
-            {
-                ThingDef def = FridgeDefs[basePower.Key];
-                CompProperties_Power power = def.GetCompProperties<CompProperties_Power>();
-                power.basePowerConsumption = basePower.Value * newFactor;
-            }
+				power.powerUpgrades ??= new(1);
+
+				var powerUpgrade = power.powerUpgrades.Find(u => u.researchProject == powerFactorSetting);
+
+				if (powerUpgrade == null)
+				{
+					powerUpgrade = new CompProperties_Power.PowerUpgrade()
+					{
+						researchProject = powerFactorSetting
+					};
+					power.powerUpgrades.Insert(0, powerUpgrade);
+				}
+
+				powerUpgrade.factor = newFactor;
+			}
+
+			Current.Game?.researchManager.FinishProject(
+				powerFactorSetting,
+				doCompletionDialog: false,
+				researcher: null,
+				doCompletionLetter: false
+			);
         }
     }
 }

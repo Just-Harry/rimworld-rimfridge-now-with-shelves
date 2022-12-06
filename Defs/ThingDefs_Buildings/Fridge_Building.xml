@@ -61,6 +61,12 @@
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>100</basePowerConsumption>
+		<powerUpgrades>
+			<li>
+				<researchProject>RimFridge_PowerFactorSetting</researchProject>
+				<factor>1.0</factor>
+			</li>
+		</powerUpgrades>
       </li>
 			<li Class="RimFridge.CompProperties_SecondLayer">
 				<graphicData>
@@ -99,6 +105,12 @@
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>140</basePowerConsumption>
+		<powerUpgrades>
+			<li>
+				<researchProject>RimFridge_PowerFactorSetting</researchProject>
+				<factor>1.0</factor>
+			</li>
+		</powerUpgrades>
       </li>
 			<li Class="RimFridge.CompProperties_SecondLayer">
 				<graphicData>

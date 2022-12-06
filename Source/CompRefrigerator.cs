@@ -165,7 +165,7 @@ namespace RimFridge
             GenTemperature.PushHeat(pos, map, changeEnergy * 1.25f);
             if (powerTrader != null)
             {
-                powerTrader.PowerOutput = -((CompProperties_Power)powerTrader.props).basePowerConsumption * ((powerMultiplier * 0.9f) + 0.1f);
+                powerTrader.PowerOutput = -((CompProperties_Power)powerTrader.props).PowerConsumption * ((powerMultiplier * 0.9f) + 0.1f);
             }
         }
 

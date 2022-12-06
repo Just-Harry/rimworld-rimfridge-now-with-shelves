@@ -7,8 +7,8 @@ namespace RimFridge
 {
     class PatchSaveSettings : PatchOperationPathed
     {
-        protected string key;
-        private XmlContainer value;
+        protected string key = default(string);
+        private XmlContainer value = default(XmlContainer);
 
         protected override bool ApplyWorker(XmlDocument xml)
         {

@@ -32,6 +32,7 @@
 			<preventDeteriorationInside>true</preventDeteriorationInside>
 			<preventDeteriorationOnTop>true</preventDeteriorationOnTop>
 			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+			<maxItemsInCell>3</maxItemsInCell>
 			<fixedStorageSettings>
 				<filter>
 					<categories>

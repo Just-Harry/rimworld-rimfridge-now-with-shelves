@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+﻿using HarmonyLib;
 using UnityEngine;
 using Verse;
 
@@ -6,7 +7,12 @@ namespace RimFridge
 {
     public class SettingsController : Mod
     {
-        public SettingsController(ModContentPack content) : base(content) => base.GetSettings<Settings>();
+        public SettingsController(ModContentPack content) : base(content)
+		{
+			base.GetSettings<Settings>();
+
+			new Harmony("com.rimfridge.rimworld.mod").PatchAll();
+		}
 
         public override string SettingsCategory()
         {

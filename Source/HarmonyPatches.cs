@@ -13,16 +13,6 @@ using Verse.Sound;
 
 namespace RimFridge
 {
-    [StaticConstructorOnStartup]
-    class HarmonyPatches
-    {
-        static HarmonyPatches()
-        {
-            var h = new Harmony("com.rimfridge.rimworld.mod");
-            h.PatchAll(Assembly.GetExecutingAssembly());
-        }
-    }
-
     [HarmonyPatch(typeof(ReachabilityUtility), "CanReach")]
     static class Patch_ReachabilityUtility_CanReach
     {

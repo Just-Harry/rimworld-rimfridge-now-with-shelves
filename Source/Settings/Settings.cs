@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 ﻿using HarmonyLib;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -48,12 +49,33 @@ namespace RimFridge
     {
         public static readonly FloatInput PowerFactor = new FloatInput("Base Power Factor");
         public static bool ActAsBeacon = false;
+		/* Making this a List causes access to be O(n), but we want to maintain
+			the order the patches were loaded in. */
+		public static List<ApplicationOfPatch> forcedApplicationOfPatches = new();
+
+		internal class ApplicationOfPatch : IExposable
+		{
+			public string patch;
+			public bool shouldForceApplication;
+
+			public void ExposeData ()
+			{
+				Scribe_Values.Look(ref this.patch, "patch");
+				Scribe_Values.Look(ref this.shouldForceApplication, "shouldForceApplication", true);
+			}
+		}
 
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref (PowerFactor.AsString), "RimFridge.PowerFactor", "1.00", false);
             Scribe_Values.Look(ref ActAsBeacon, "RimFridge.ActAsBeacon", false, false);
+            Scribe_Collections.Look(ref forcedApplicationOfPatches, "RimFridge.ForcedApplicationOfPatches", LookMode.Deep);
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+            	forcedApplicationOfPatches ??= new();
+            }
         }
     }
 }

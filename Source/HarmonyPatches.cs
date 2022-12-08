@@ -349,6 +349,84 @@ namespace RimFridge
 		}
 	}
 
+	public static class HacksForCompatibility
+	{
+		[HarmonyPatch(typeof(LoadedModManager), nameof(LoadedModManager.ErrorCheckPatches))]
+		public static class ForceTheApplicationOfSomePatches
+		{
+			[HarmonyPostfix]
+			public static void RifleThroughThePatchesThatAreAboutToBeApplied ()
+			{
+				/* If an exception is thrown by ErrorCheckPatches, the game stops loading and all that's
+					left is a black screen. To avoid being the mod that breaks a user's game, we catch
+					ANY exception. */
+				try
+				{
+					var rimFridge = LoadedModManager.GetMod<SettingsController>();
+					var rimFridgeMetadata = rimFridge.Content.ModMetaData;
+					var rimFridgeIndex = Compatibility.FindIndexOfModInActiveModLoadOrder(rimFridge);
+
+					var patchesToNotForceApplicationOf = new HashSet<string>(
+						Settings.forcedApplicationOfPatches.Where(a => !a.shouldForceApplication).Select(a => a.patch)
+					);
+
+					var applicationOfPatches = new List<Settings.ApplicationOfPatch>();
+
+					var modsField = typeof(PatchOperationFindMod).GetField("mods", BindingFlags.Instance | BindingFlags.NonPublic);
+
+					foreach (ModContentPack mod in LoadedModManager.RunningModsListForReading.Skip(rimFridgeIndex + 1))
+					{
+						foreach (var patch in mod.Patches)
+						{
+							if (patch is PatchOperationFindMod findModPatch)
+							{
+								try
+								{
+									var applicableModNames = (List<string>) modsField.GetValue(findModPatch);
+
+									if (
+										   !applicableModNames.Any(name => name == rimFridgeMetadata.Name)
+										&& applicableModNames.Any(Compatibility.IsRecognisedRimFridgeModName)
+									)
+									{
+										var patchID = Compatibility.IdentifierForPatch(findModPatch, of: mod);
+
+										var forcingApplication = !patchesToNotForceApplicationOf.Contains(patchID);
+
+										if (forcingApplication)
+										{
+											Logger.Message($"Forcing the application of patch {patchID} of {mod.ModMetaData.Name}.");
+
+											applicableModNames.Add(rimFridgeMetadata.Name);
+										}
+
+										applicationOfPatches.Add(
+											new() {
+												patch = patchID,
+												shouldForceApplication = forcingApplication
+											}
+										);
+									}
+								}
+								catch (Exception e)
+								{
+									Logger.Error(e.ToString());
+								}
+							}
+						}
+					}
+
+					applicationOfPatches.TrimExcess();
+					Settings.forcedApplicationOfPatches = applicationOfPatches;
+				}
+				catch (Exception e)
+				{
+					Logger.Error(e.ToString());
+				}
+			}
+		}
+	}
+
     /*
         [HarmonyPatch(typeof(Dialog_BillConfig), "DoWindowContents", new Type[] {typeof(Rect)})]
         public static class Patch_Dialog_BillConfig_DoWindowContents

@@ -36,5 +36,28 @@ namespace RimFridge
 			RimFridgeSettingsUtil.ApplyFactor(Settings.PowerFactor.AsFloat);
 		}
 	}
+
+	internal static class Logger
+	{
+		internal static void Message (string text)
+		{
+			Log.Message(Text(text));
+		}
+
+		internal static void Warning (string text)
+		{
+			Log.Warning(Text(text));
+		}
+
+		internal static void Error (string text)
+		{
+			Log.Error(Text(text));
+		}
+
+		internal static string Text (string text)
+		{
+			return $"|RimFridge: Now with Shelves!| {text}";
+		}
+	}
 }
 

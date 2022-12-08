@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 ﻿using HarmonyLib;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -20,9 +21,25 @@ namespace RimFridge
             return "RimFridge";
         }
 
+		internal class GUIState
+		{
+			internal Vector2 forcedApplicationOfPatchesScrollPosition;
+			internal List<bool> initialStateOfShouldForceApplicationOfPatches;
+		}
+
+		internal GUIState guiState = null;
+
         public override void DoSettingsWindowContents(Rect rect)
         {
-            GUI.BeginGroup(new Rect(0, 60, 600, 200));
+			if (guiState == null)
+			{
+				guiState = new();
+				guiState.initialStateOfShouldForceApplicationOfPatches = (
+					Settings.forcedApplicationOfPatches.Select(a => a.shouldForceApplication).ToList()
+				);
+			}
+
+            GUI.BeginGroup(new Rect(0, 60, 800, 600));
             Text.Font = GameFont.Small;
             Widgets.Label(new Rect(0, 40, 300, 20), "Modify Base Power Requirement" + ":");
             Settings.PowerFactor.AsString = Widgets.TextField(new Rect(320, 40, 100, 20), Settings.PowerFactor.AsString);
@@ -41,8 +58,57 @@ namespace RimFridge
             }
             Widgets.Label(new Rect(20, 100, 400, 30), "<new power usage> = <input value> * <original power usage>");
             Widgets.CheckboxLabeled(new Rect(0, 140, 200, 30), "Act as Trade Beacon:", ref Settings.ActAsBeacon);
+
+            if (ShouldShowCompatibilitySettings)
+            {
+				Widgets.DrawMenuSection(new Rect(0, 180, 800, 370));
+
+				Widgets.Label(new Rect(10, 180, 790, 30), "RimFridge.Compatibility".Translate());
+
+				Widgets.Label(new Rect(10, 210, 790, 30), "RimFridge.ForceApplicationOfThesePatches".Translate());
+				Widgets.BeginScrollView(new Rect(0, 250, 800, 300), ref guiState.forcedApplicationOfPatchesScrollPosition, new Rect(0, 250, 800 - GenUI.ScrollBarWidth, 30 * Settings.forcedApplicationOfPatches.Count));
+
+				for (int index = 0; index < Settings.forcedApplicationOfPatches.Count; ++index)
+				{
+					var patch = Settings.forcedApplicationOfPatches[index];
+
+					Widgets.CheckboxLabeled(
+						new Rect(20, 250 + index * 30, 780 - GenUI.ScrollBarWidth, 28),
+						patch.patch,
+						ref patch.shouldForceApplication,
+						placeCheckboxNearText: true
+					);
+				}
+
+				Widgets.EndScrollView();
+			}
+
             GUI.EndGroup();
         }
+
+		public override void WriteSettings ()
+		{
+			base.WriteSettings();
+
+			if (ShouldShowCompatibilitySettings)
+			{
+				if (
+					!guiState.initialStateOfShouldForceApplicationOfPatches.SequenceEqual(
+						Settings.forcedApplicationOfPatches.Select(a => a.shouldForceApplication)
+					)
+				)
+				{
+					ModsConfig.RestartFromChangedMods();
+				}
+			}
+
+			guiState = null;
+		}
+
+		protected static bool ShouldShowCompatibilitySettings
+		{
+			get => Current.Game == null;
+		}
     }
 
     internal class Settings : ModSettings

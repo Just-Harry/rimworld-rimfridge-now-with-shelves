@@ -6,4 +6,6 @@
 	<RimFridge.RenameTheRefrigerator>Rename The Refrigerator</RimFridge.RenameTheRefrigerator>
 	<RimFridge.ToggleGlowColor>Toggle Glow Color</RimFridge.ToggleGlowColor>
 	<RimFridge.ToggleGlowColorDesc>Toggle the color of the glow between normal and dark light.</RimFridge.ToggleGlowColorDesc>
+	<RimFridge.Compatibility>Compatibility</RimFridge.Compatibility>
+	<RimFridge.ForceApplicationOfThesePatches>Force the application of these patches for other versions of RimFridge.</RimFridge.ForceApplicationOfThesePatches>
 </LanguageData>

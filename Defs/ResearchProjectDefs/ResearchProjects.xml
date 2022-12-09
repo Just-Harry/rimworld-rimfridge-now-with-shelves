@@ -7,8 +7,8 @@
 		<baseCost>0</baseCost>
 		<techLevel>Neolithic</techLevel>
 		<recalculatePower>true</recalculatePower>
-		<researchViewX>NaN</researchViewX>
-		<researchViewY>NaN</researchViewY>
+		<researchViewX>256</researchViewX>
+		<researchViewY>256</researchViewY>
 	</ResearchProjectDef>
 </Defs>
 

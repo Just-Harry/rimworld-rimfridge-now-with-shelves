@@ -373,45 +373,50 @@ namespace RimFridge
 					var applicationOfPatches = new List<Settings.ApplicationOfPatch>();
 
 					var modsField = typeof(PatchOperationFindMod).GetField("mods", BindingFlags.Instance | BindingFlags.NonPublic);
+					var applicableModNamesOf = (PatchOperationFindMod p) => (List<string>) modsField.GetValue(p);
 
 					foreach (ModContentPack mod in LoadedModManager.RunningModsListForReading.Skip(rimFridgeIndex + 1))
 					{
-						foreach (var patch in mod.Patches)
+						var patches = mod.Patches.OfType<PatchOperationFindMod>();
+
+						if (patches.Any(p => applicableModNamesOf(p).Any(name => name == rimFridgeMetadata.Name)))
 						{
-							if (patch is PatchOperationFindMod findModPatch)
+							/* This mod has at-least one patch that targets us, so we're not going to force the
+								application of any patches, as that would likely cause problems if the mod's already
+								accounted for us in a potentially-separate patch. */
+							continue;
+						}
+
+						foreach (var patch in patches)
+						{
+							try
 							{
-								try
-								{
-									var applicableModNames = (List<string>) modsField.GetValue(findModPatch);
+								var applicableModNames = applicableModNamesOf(patch);
 
-									if (
-										   !applicableModNames.Any(name => name == rimFridgeMetadata.Name)
-										&& applicableModNames.Any(Compatibility.IsRecognisedRimFridgeModName)
-									)
+								if (applicableModNames.Any(Compatibility.IsRecognisedRimFridgeModName))
+								{
+									var patchID = Compatibility.IdentifierForPatch(patch, of: mod);
+
+									var forcingApplication = !patchesToNotForceApplicationOf.Contains(patchID);
+
+									if (forcingApplication)
 									{
-										var patchID = Compatibility.IdentifierForPatch(findModPatch, of: mod);
+										Logger.Message($"Forcing the application of patch {patchID} of {mod.ModMetaData.Name}.");
 
-										var forcingApplication = !patchesToNotForceApplicationOf.Contains(patchID);
-
-										if (forcingApplication)
-										{
-											Logger.Message($"Forcing the application of patch {patchID} of {mod.ModMetaData.Name}.");
-
-											applicableModNames.Add(rimFridgeMetadata.Name);
-										}
-
-										applicationOfPatches.Add(
-											new() {
-												patch = patchID,
-												shouldForceApplication = forcingApplication
-											}
-										);
+										applicableModNames.Add(rimFridgeMetadata.Name);
 									}
+
+									applicationOfPatches.Add(
+										new() {
+											patch = patchID,
+											shouldForceApplication = forcingApplication
+										}
+									);
 								}
-								catch (Exception e)
-								{
-									Logger.Error(e.ToString());
-								}
+							}
+							catch (Exception e)
+							{
+								Logger.Error(e.ToString());
 							}
 						}
 					}

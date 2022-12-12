@@ -9,6 +9,9 @@
 		<recalculatePower>true</recalculatePower>
 		<researchViewX>256</researchViewX>
 		<researchViewY>256</researchViewY>
+		<prerequisites>
+			<li>RimFridge_PowerFactorSetting</li>
+		</prerequisites>
 	</ResearchProjectDef>
 </Defs>
 

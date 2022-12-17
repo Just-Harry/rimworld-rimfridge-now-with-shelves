@@ -66,6 +66,7 @@
 					</disallowedThingDefs>
 				</filter>
 			</defaultStorageSettings>
+			<isHopper>true</isHopper>
 		</building>
 		<comps>
 			<li Class="CompProperties_Flickable"/>

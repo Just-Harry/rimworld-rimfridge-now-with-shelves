@@ -164,6 +164,7 @@ namespace RimFridge
         }
     }
 
+	/* |TODO| Remove this patch in the 1.5 branch. */
     [HarmonyPatch(typeof(Building_NutrientPasteDispenser), "FindFeedInAnyHopper")]
     public static class Patch_Building_NutrientPasteDispenser_FindFeedInAnyHopper
     {
@@ -194,6 +195,7 @@ namespace RimFridge
         }
     }
 
+	/* |TODO| Remove this patch in the 1.5 branch. */
     [HarmonyPatch(typeof(Building_NutrientPasteDispenser), "HasEnoughFeedstockInHoppers")]
     public static class Patch_Building_NutrientPasteDispenser_HasEnoughFeedstockInHoppers
     {
@@ -233,6 +235,7 @@ namespace RimFridge
         }
     }
 
+	/* |TODO| Remove this patch in the 1.5 branch. */
     [HarmonyPatch(typeof(Alert_PasteDispenserNeedsHopper), "BadDispensers", MethodType.Getter)]
     public static class Patch_Alert_PasteDispenserNeedsHopper_BadDispensers_Getter
     {

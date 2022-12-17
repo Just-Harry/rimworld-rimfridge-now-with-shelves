@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,7 +14,26 @@ namespace RimFridge
 		{
 			base.GetSettings<Settings>();
 
-			new Harmony("com.rimfridge.rimworld.mod").PatchAll();
+			var harmony = new Harmony("com.rimfridge.rimworld.mod");
+
+			/* |TODO| Use Harmony patch-categories for this, when the next version of Harmony is released. */
+
+			harmony.CreateClassProcessor(typeof(Patch_ReachabilityUtility_CanReach)).Patch();
+			harmony.CreateClassProcessor(typeof(Patch_Thing_AmbientTemperature)).Patch();
+			harmony.CreateClassProcessor(typeof(Patch_PassingShip_TryOpenComms)).Patch();
+			harmony.CreateClassProcessor(typeof(Patch_FoodUtility_TryFindBestFoodSourceFor)).Patch();
+			harmony.CreateClassProcessor(typeof(DisplayStackedItemsNicelyInFridges.MungeTrueCenterOfItemsInFridges)).Patch();
+			harmony.CreateClassProcessor(typeof(DisplayStackedItemsNicelyInFridges.MakeTheStackCountLabelsReadable)).Patch();
+			harmony.CreateClassProcessor(typeof(HacksForCompatibility.ForceTheApplicationOfSomePatches)).Patch();
+
+			if (VersionControl.CurrentVersion < new Version(1, 4, 3580))
+			{
+				harmony.CreateClassProcessor(typeof(Patch_Building_NutrientPasteDispenser_FindFeedInAnyHopper)).Patch();
+				harmony.CreateClassProcessor(typeof(Patch_Building_NutrientPasteDispenser_HasEnoughFeedstockInHoppers)).Patch();
+				harmony.CreateClassProcessor(typeof(Patch_Alert_PasteDispenserNeedsHopper_BadDispensers_Getter)).Patch();
+
+				Logger.Message("The RimWorld version is older than 1.4.3580, so we're patching the hopper-finding behaviour of Nutrient Paste Dispensers.");
+			}
 		}
 
         public override string SettingsCategory()

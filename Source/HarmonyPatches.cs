@@ -16,28 +16,10 @@ namespace RimFridge
     [HarmonyPatch(typeof(ReachabilityUtility), "CanReach")]
     static class Patch_ReachabilityUtility_CanReach
     {
-        static bool Prefix(ref bool __result, Pawn pawn, LocalTargetInfo dest, PathEndMode peMode, Danger maxDanger, bool canBashDoors, TraverseMode mode)
+        static void Prefix(Pawn pawn, LocalTargetInfo dest, ref PathEndMode peMode)
         {
-            try
-            {
-                if (dest.Thing?.def.category == ThingCategory.Item)
-                {
-                    foreach (Thing thing in Current.Game?.CurrentMap?.thingGrid?.ThingsAt(dest.Thing.Position))
-                    {
-                        if (thing is RimFridge_Building)
-                        {
-                            peMode = PathEndMode.Touch;
-                            __result = pawn?.Spawned == true && pawn.Map?.reachability?.CanReach(pawn.Position, dest, peMode, TraverseParms.For(pawn, maxDanger, mode, canBashDoors)) == true;
-                            return false;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                Log.Warning("RimFridge: something went wrong with CanReach check, going back to original game logic.");
-            }
-            return true;
+	        if (dest.Thing?.def.category == ThingCategory.Item && pawn?.Map != null && FridgeCache.GetFridgeCache(pawn.Map)?.HasFridgeAt(dest.Cell) == true)
+		        peMode = PathEndMode.Touch;
         }
     }
 

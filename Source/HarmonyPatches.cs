@@ -13,15 +13,21 @@ using Verse.Sound;
 
 namespace RimFridge
 {
-    [HarmonyPatch(typeof(ReachabilityUtility), "CanReach")]
-    static class Patch_ReachabilityUtility_CanReach
-    {
-        static void Prefix(Pawn pawn, LocalTargetInfo dest, ref PathEndMode peMode)
-        {
-	        if (dest.Thing?.def.category == ThingCategory.Item && pawn?.Map != null && FridgeCache.GetFridgeCache(pawn.Map)?.HasFridgeAt(dest.Cell) == true)
-		        peMode = PathEndMode.Touch;
-        }
-    }
+	[HarmonyPatch(typeof(ReachabilityUtility), "CanReach")]
+	static class Patch_ReachabilityUtility_CanReach
+	{
+		static void Prefix (Pawn pawn, LocalTargetInfo dest, ref PathEndMode peMode)
+		{
+			if (
+				   dest.Thing?.def.category == ThingCategory.Item
+				&& pawn?.Map != null
+				&& FridgeCache.GetFridgeCache(pawn.Map)?.HasFridgeAt(dest.Cell) == true
+			)
+			{
+				peMode = PathEndMode.Touch;
+			}
+		}
+	}
 
     /*[HarmonyPriority(Priority.Last)]
     [HarmonyPatch(typeof(CompRottable), "Active", MethodType.Getter)]

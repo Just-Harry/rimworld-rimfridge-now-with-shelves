@@ -32,7 +32,9 @@ Thanks to everyone who's helped translate this mod!
 * Firty &amp; MrCaka - Portuguese / Brazilian
 
 Thanks to everyone who's added/edited code!
-* Demonseed Elite - Refactored code for better compatibility and additional features
-* towhead - Made the fridges hide the uglyness of food
+* Demonseed Elite – Refactored code for better compatibility and additional features.
+* towhead – Made the fridges hide the uglyness of food.
+* kbatbouta – Found a more efficient way to keep track of what food is stored and frozen in fridges.
+* SokyranTheDragon – Improved a Harmony patch such that it has less performance cost and is less likely to be incompatible with other mods and game updates.
 
 Many thanks go towards the original authors of this mod: Vendan, and then Kiame Vivacity.

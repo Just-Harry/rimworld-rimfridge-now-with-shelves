@@ -192,7 +192,8 @@ namespace RimFridge
             if (parent is Building_Storage b)
             {
                 b.def.building.fixedStorageSettings = fixedStorageSettings;
-                b.settings = new StorageSettings((Building_Storage)parent);
+                Building_Storage b2 = parent as Building_Storage;
+                b.settings = new StorageSettings(b2);
                 if (b.def.building.defaultStorageSettings != null)
                 {
                     b.settings.CopyFrom(b.def.building.defaultStorageSettings);

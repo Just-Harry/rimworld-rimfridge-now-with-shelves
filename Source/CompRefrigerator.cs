@@ -172,7 +172,12 @@ namespace RimFridge
         private void CreateFixedStorageSettings()
         {
             fixedStorageSettings = new StorageSettings();
-            fixedStorageSettings.CopyFrom(((Building_Storage)parent).def.building.fixedStorageSettings);
+
+            if (parent is Building_Storage storage)
+            {
+                fixedStorageSettings.CopyFrom(storage.def.building.fixedStorageSettings);
+            }
+
             if ((parent.GetComp<CompRefrigerator>().props as CompProperties_Refrigerator)?.findAllRottableForFilters == true)
             {
                 foreach (ThingDef td in DefDatabase<ThingDef>.AllDefs)

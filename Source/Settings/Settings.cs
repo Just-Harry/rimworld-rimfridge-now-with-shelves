@@ -16,8 +16,6 @@ namespace RimFridge
 
 			var harmony = new Harmony("com.rimfridge.rimworld.mod");
 
-			/* |TODO| Use Harmony patch-categories for this, when the next version of Harmony is released. */
-
 			harmony.CreateClassProcessor(typeof(Patch_ReachabilityUtility_CanReach)).Patch();
 			harmony.CreateClassProcessor(typeof(Patch_Thing_AmbientTemperature)).Patch();
 			harmony.CreateClassProcessor(typeof(Patch_PassingShip_TryOpenComms)).Patch();

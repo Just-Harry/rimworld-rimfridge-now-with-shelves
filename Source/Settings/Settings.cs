@@ -23,15 +23,6 @@ namespace RimFridge
 			harmony.CreateClassProcessor(typeof(DisplayStackedItemsNicelyInFridges.MungeTrueCenterOfItemsInFridges)).Patch();
 			harmony.CreateClassProcessor(typeof(DisplayStackedItemsNicelyInFridges.MakeTheStackCountLabelsReadable)).Patch();
 			harmony.CreateClassProcessor(typeof(HacksForCompatibility.ForceTheApplicationOfSomePatches)).Patch();
-
-			if (VersionControl.CurrentVersion < new Version(1, 4, 3580))
-			{
-				harmony.CreateClassProcessor(typeof(Patch_Building_NutrientPasteDispenser_FindFeedInAnyHopper)).Patch();
-				harmony.CreateClassProcessor(typeof(Patch_Building_NutrientPasteDispenser_HasEnoughFeedstockInHoppers)).Patch();
-				harmony.CreateClassProcessor(typeof(Patch_Alert_PasteDispenserNeedsHopper_BadDispensers_Getter)).Patch();
-
-				Logger.Message("The RimWorld version is older than 1.4.3580, so we're patching the hopper-finding behaviour of Nutrient Paste Dispensers.");
-			}
 		}
 
 		public override string SettingsCategory ()

@@ -11,6 +11,9 @@
   <RimFridge_QuadRefrigerator.description>Łatwo psujące się towary nie gniją w tej dużej chłodziarce</RimFridge_QuadRefrigerator.description>
 
 
+	<RimFridge_SingleRefrigerator.building.groupingLabel>Mała chłodziarka</RimFridge_SingleRefrigerator.building.groupingLabel>
+	<RimFridge_Refrigerator.building.groupingLabel>Chłodziarka</RimFridge_Refrigerator.building.groupingLabel>
+	<RimFridge_QuadRefrigerator.building.groupingLabel>Duża chłodziarka</RimFridge_QuadRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

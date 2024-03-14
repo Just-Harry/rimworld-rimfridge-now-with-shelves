@@ -16,6 +16,8 @@
   <RimFridge_SingleWallRefrigerator_Frame.description>食物放在裡面不會腐壞。</RimFridge_SingleWallRefrigerator_Frame.description>
 
 
+	<RimFridge_SingleWallRefrigerator.building.groupingLabel>小型壁掛式冰箱</RimFridge_SingleWallRefrigerator.building.groupingLabel>
+	<RimFridge_WallRefrigerator.building.groupingLabel>壁掛式冰箱</RimFridge_WallRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

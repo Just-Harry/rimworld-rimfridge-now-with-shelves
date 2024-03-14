@@ -22,6 +22,9 @@
   <Frame_RimFridge_QuadRefrigerator.label>冷蔵庫(4連)(施工)</Frame_RimFridge_QuadRefrigerator.label>
   <Frame_RimFridge_QuadRefrigerator.description>これに保存される鮮度のあるアイテムは、腐敗しません。</Frame_RimFridge_QuadRefrigerator.description>
 
+	<RimFridge_SingleRefrigerator.building.groupingLabel>一人用冷蔵庫</RimFridge_SingleRefrigerator.building.groupingLabel>
+	<RimFridge_Refrigerator.building.groupingLabel>冷蔵庫</RimFridge_Refrigerator.building.groupingLabel>
+	<RimFridge_QuadRefrigerator.building.groupingLabel>冷蔵庫(4連)</RimFridge_QuadRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

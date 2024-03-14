@@ -7,6 +7,8 @@
 	<RimFridge_SingleWallRefrigerator.label>Réfrigérateur mural simple</RimFridge_SingleWallRefrigerator.label>
 	<RimFridge_SingleWallRefrigerator.description>Les denrées périssables stockées ici ne se détérioreront pas.</RimFridge_SingleWallRefrigerator.description>
 
+	<RimFridge_SingleWallRefrigerator.building.groupingLabel>Réfrigérateur mural simple</RimFridge_SingleWallRefrigerator.building.groupingLabel>
+	<RimFridge_WallRefrigerator.building.groupingLabel>Réfrigérateur mural double</RimFridge_WallRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

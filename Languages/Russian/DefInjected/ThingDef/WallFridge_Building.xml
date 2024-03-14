@@ -13,5 +13,7 @@
   <RimFridge_SingleWallRefrigerator_Blueprint_Install.label>встроенный однокамерный холодильник (проект)</RimFridge_SingleWallRefrigerator_Blueprint_Install.label>
   <RimFridge_SingleWallRefrigerator_Frame.label>встроенный однокамерный холодильник (строится)</RimFridge_SingleWallRefrigerator_Frame.label>
   <RimFridge_SingleWallRefrigerator_Frame.description>Бытовой холодильник, встроенный в стену. Может быть использован как стена, разделяет помещения.</RimFridge_SingleWallRefrigerator_Frame.description>
+	<RimFridge_SingleWallRefrigerator.building.groupingLabel>встроенный холодильник (одна камера)</RimFridge_SingleWallRefrigerator.building.groupingLabel>
+	<RimFridge_WallRefrigerator.building.groupingLabel>встроенный холодильник (две камеры)</RimFridge_WallRefrigerator.building.groupingLabel>
 </LanguageData>
 

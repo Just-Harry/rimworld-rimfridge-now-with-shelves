@@ -16,6 +16,8 @@
   <RimFridge_SingleWallRefrigerator_Frame.description>부패할 수 있는 것들이 이 안에 보관되면 썩지 않을 것입니다.</RimFridge_SingleWallRefrigerator_Frame.description>
 
 
+	<RimFridge_SingleWallRefrigerator.building.groupingLabel>한칸 벽식 냉장고</RimFridge_SingleWallRefrigerator.building.groupingLabel>
+	<RimFridge_WallRefrigerator.building.groupingLabel>벽식 냉장고</RimFridge_WallRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

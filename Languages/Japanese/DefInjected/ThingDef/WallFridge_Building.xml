@@ -15,6 +15,8 @@
   <Frame_RimFridge_WallRefrigerator.label>壁用冷蔵庫 (2連)(施工)</Frame_RimFridge_WallRefrigerator.label>
   <Frame_RimFridge_WallRefrigerator.description>これに保存される鮮度のあるアイテムは、腐敗しません。</Frame_RimFridge_WallRefrigerator.description>
 
+	<RimFridge_SingleWallRefrigerator.building.groupingLabel>壁用冷蔵庫 (一人用)</RimFridge_SingleWallRefrigerator.building.groupingLabel>
+	<RimFridge_WallRefrigerator.building.groupingLabel>壁用冷蔵庫 (2連)</RimFridge_WallRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

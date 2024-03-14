@@ -35,6 +35,9 @@
 				<altitudeLayer>Projectile</altitudeLayer>
 			</li>
 		</comps>
+		<building>
+			<groupingLabel>Single Refrigerator</groupingLabel>
+		</building>
 	</ThingDef>
 
 	<ThingDef ParentName="FridgeBase">
@@ -78,6 +81,9 @@
 				<altitudeLayer>Projectile</altitudeLayer>
 			</li>
 		</comps>
+		<building>
+			<groupingLabel>Dual Refrigerator</groupingLabel>
+		</building>
 	</ThingDef>
 
 
@@ -122,5 +128,8 @@
 				<altitudeLayer>Projectile</altitudeLayer>
 			</li>
 		</comps>
+		<building>
+			<groupingLabel>Quad Refrigerator</groupingLabel>
+		</building>
 	</ThingDef>
 </Defs>

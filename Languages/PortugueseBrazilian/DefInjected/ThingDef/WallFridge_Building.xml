@@ -16,6 +16,8 @@
   <RimFridge_SingleWallRefrigerator_Frame.description>Um pequeno refrigerador para guardar comida e outras coisas</RimFridge_SingleWallRefrigerator_Frame.description>
 
 
+	<RimFridge_SingleWallRefrigerator.building.groupingLabel>Minibar de parede (1x1)</RimFridge_SingleWallRefrigerator.building.groupingLabel>
+	<RimFridge_WallRefrigerator.building.groupingLabel>Geladeira de parede (2x1)</RimFridge_WallRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

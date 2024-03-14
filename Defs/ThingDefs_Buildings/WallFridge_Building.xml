@@ -53,6 +53,9 @@
 				<altitudeLayer>Projectile</altitudeLayer>
 			</li>
 		</comps>
+		<building>
+			<groupingLabel>Wall Single Refrigerator</groupingLabel>
+		</building>
 	</ThingDef>
 
 	<ThingDef ParentName="WallFridgeBase">
@@ -95,5 +98,8 @@
 				<altitudeLayer>Projectile</altitudeLayer>
 			</li>
 		</comps>
+		<building>
+			<groupingLabel>Wall Dual Refrigerator</groupingLabel>
+		</building>
 	</ThingDef>
 </Defs>

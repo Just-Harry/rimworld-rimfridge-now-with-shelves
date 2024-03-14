@@ -23,6 +23,9 @@
   <RimFridge_QuadRefrigerator_Frame.description>Um grande frizer para armazenar e congelar alimentos</RimFridge_QuadRefrigerator_Frame.description>
 
 
+	<RimFridge_SingleRefrigerator.building.groupingLabel>Minibar (1x1)</RimFridge_SingleRefrigerator.building.groupingLabel>
+	<RimFridge_Refrigerator.building.groupingLabel>Geladeira (2x1)</RimFridge_Refrigerator.building.groupingLabel>
+	<RimFridge_QuadRefrigerator.building.groupingLabel>Refrigerador quadrado (2x2)</RimFridge_QuadRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

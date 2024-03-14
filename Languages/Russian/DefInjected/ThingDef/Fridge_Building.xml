@@ -20,5 +20,8 @@
   <RimFridge_QuadRefrigerator_Blueprint_Install.label>четырехкамерный холодильник (проект)</RimFridge_QuadRefrigerator_Blueprint_Install.label>
   <RimFridge_QuadRefrigerator_Frame.label>четырехкамерный холодильник (строится)</RimFridge_QuadRefrigerator_Frame.label>
   <RimFridge_QuadRefrigerator_Frame.description>Вместительный холодильник, использующийся для хранения скоропортящихся продуктов. Такое оборудование обычно устанавливают на крупных производствах.</RimFridge_QuadRefrigerator_Frame.description>
+	<RimFridge_SingleRefrigerator.building.groupingLabel>холодильник (одна камера)</RimFridge_SingleRefrigerator.building.groupingLabel>
+	<RimFridge_Refrigerator.building.groupingLabel>холодильник (две камеры)</RimFridge_Refrigerator.building.groupingLabel>
+	<RimFridge_QuadRefrigerator.building.groupingLabel>холодильник (четыре камеры)</RimFridge_QuadRefrigerator.building.groupingLabel>
 </LanguageData>
 

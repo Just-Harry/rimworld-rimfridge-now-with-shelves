@@ -7,6 +7,8 @@
 	<RimFridge_SingleWallRefrigerator.label>Refrigerador-Muro</RimFridge_SingleWallRefrigerator.label>
 	<RimFridge_SingleWallRefrigerator.description>Las cosas perecederas almacenadas aquí no se deteriorarán.</RimFridge_SingleWallRefrigerator.description>
 
+	<RimFridge_SingleWallRefrigerator.building.groupingLabel>Refrigerador-Muro</RimFridge_SingleWallRefrigerator.building.groupingLabel>
+	<RimFridge_WallRefrigerator.building.groupingLabel>Refrigerador-Muro doble</RimFridge_WallRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

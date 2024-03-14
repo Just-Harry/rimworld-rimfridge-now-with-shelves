@@ -23,6 +23,9 @@
   <RimFridge_QuadRefrigerator_Frame.description>부패할 수 있는 것들이 이 안에 보관되면 썩지 않을 것입니다.</RimFridge_QuadRefrigerator_Frame.description>
 
 
+	<RimFridge_SingleRefrigerator.building.groupingLabel>한칸 냉장고</RimFridge_SingleRefrigerator.building.groupingLabel>
+	<RimFridge_Refrigerator.building.groupingLabel>냉장고</RimFridge_Refrigerator.building.groupingLabel>
+	<RimFridge_QuadRefrigerator.building.groupingLabel>네칸 냉장고</RimFridge_QuadRefrigerator.building.groupingLabel>
 </LanguageData>
 
 

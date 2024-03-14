@@ -16,13 +16,25 @@ namespace RimFridge
 
 			var harmony = new Harmony("com.rimfridge.rimworld.mod");
 
-			harmony.CreateClassProcessor(typeof(Patch_ReachabilityUtility_CanReach)).Patch();
-			harmony.CreateClassProcessor(typeof(Patch_Thing_AmbientTemperature)).Patch();
-			harmony.CreateClassProcessor(typeof(Patch_PassingShip_TryOpenComms)).Patch();
-			harmony.CreateClassProcessor(typeof(Patch_FoodUtility_TryFindBestFoodSourceFor)).Patch();
-			harmony.CreateClassProcessor(typeof(DisplayStackedItemsNicelyInFridges.MungeTrueCenterOfItemsInFridges)).Patch();
-			harmony.CreateClassProcessor(typeof(DisplayStackedItemsNicelyInFridges.MakeTheStackCountLabelsReadable)).Patch();
-			harmony.CreateClassProcessor(typeof(HacksForCompatibility.ForceTheApplicationOfSomePatches)).Patch();
+			var patch = (Type type) =>
+			{
+				try
+				{
+					harmony.CreateClassProcessor(type).Patch();
+				}
+				catch (Exception e)
+				{
+					Logger.Error(e.ToString());
+				}
+			};
+
+			patch(typeof(Patch_ReachabilityUtility_CanReach));
+			patch(typeof(Patch_Thing_AmbientTemperature));
+			patch(typeof(Patch_PassingShip_TryOpenComms));
+			patch(typeof(Patch_FoodUtility_TryFindBestFoodSourceFor));
+			patch(typeof(DisplayStackedItemsNicelyInFridges.MungeTrueCenterOfItemsInFridges));
+			patch(typeof(DisplayStackedItemsNicelyInFridges.MakeTheStackCountLabelsReadable));
+			patch(typeof(HacksForCompatibility.ForceTheApplicationOfSomePatches));
 		}
 
 		public override string SettingsCategory ()

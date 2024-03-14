@@ -5,7 +5,7 @@ Param
 	[Parameter()]
 		[ValidateNotNull()]
 		[AllowEmptyCollection()]
-			$AssemblyPaths = @((Join-Path $PSScriptRoot '../../Assemblies/1.4')),
+			$AssemblyPaths = @((Join-Path $PSScriptRoot '../../Assemblies/1.5')),
 
 	[Parameter()]
 		[ValidateNotNull()]

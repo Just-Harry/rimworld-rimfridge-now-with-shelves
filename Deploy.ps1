@@ -8,12 +8,12 @@ Param
 
 	[Parameter()]
 		[ValidateNotNull()]
-			$LastestVersion = '1.4',
+			$LastestVersion = '1.5',
 
 	[Parameter()]
 		[ValidateNotNull()]
 		[AllowEmptyCollection()]
-			$OldVersions = @(),
+			$OldVersions = @('1.4'),
 
 	[Parameter()]
 		[ValidateNotNull()]

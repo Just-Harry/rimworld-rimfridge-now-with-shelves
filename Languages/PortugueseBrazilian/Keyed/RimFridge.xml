@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <RimFridge.TargetTemperature>Temperatura desejada</RimFridge.TargetTemperature>
   <RimFridge.CurrentTemperature>Temperatura atual</RimFridge.CurrentTemperature>
@@ -6,3 +6,5 @@
   <RimFridge.RenameTheRefrigerator>Rename The Refrigerator</RimFridge.RenameTheRefrigerator>
 
 </LanguageData>
+
+

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <ModMetaData>
 	<name>RimFridge: Now with Shelves!</name>
@@ -59,3 +59,4 @@ The source code for this mod can be found at: https://github.com/Just-Harry/rimw
     </li>
 </modDependencies>
 </ModMetaData>
+

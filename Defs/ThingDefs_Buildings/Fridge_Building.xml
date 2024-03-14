@@ -21,10 +21,10 @@
 		</statBases>
 		<size>(1,1)</size>
 		<comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>70</basePowerConsumption>
-      </li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>70</basePowerConsumption>
+			</li>
 			<li Class="RimFridge.CompProperties_SecondLayer">
 				<graphicData>
 					<texPath>Building/Temperature/Fridge/SingleFridgeLid</texPath>
@@ -36,7 +36,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="FridgeBase">
 		<defName>RimFridge_Refrigerator</defName>
 		<label>Dual Refrigerator</label>
@@ -58,16 +58,16 @@
 		</statBases>
 		<size>(2,1)</size>
 		<comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>100</basePowerConsumption>
-		<powerUpgrades>
-			<li>
-				<researchProject>RimFridge_PowerFactorSetting</researchProject>
-				<factor>1.0</factor>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>100</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>RimFridge_PowerFactorSetting</researchProject>
+						<factor>1.0</factor>
+					</li>
+				</powerUpgrades>
 			</li>
-		</powerUpgrades>
-      </li>
 			<li Class="RimFridge.CompProperties_SecondLayer">
 				<graphicData>
 					<texPath>Building/Temperature/Fridge/DualFridgeLid</texPath>
@@ -102,16 +102,16 @@
 		</statBases>
 		<size>(2,2)</size>
 		<comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>140</basePowerConsumption>
-		<powerUpgrades>
-			<li>
-				<researchProject>RimFridge_PowerFactorSetting</researchProject>
-				<factor>1.0</factor>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>140</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>RimFridge_PowerFactorSetting</researchProject>
+						<factor>1.0</factor>
+					</li>
+				</powerUpgrades>
 			</li>
-		</powerUpgrades>
-      </li>
 			<li Class="RimFridge.CompProperties_SecondLayer">
 				<graphicData>
 					<texPath>Building/Temperature/Fridge/QuadFridgeLid</texPath>

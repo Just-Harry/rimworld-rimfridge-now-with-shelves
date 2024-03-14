@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
   <RimFridge_SingleRefrigerator.label>一人用冷蔵庫</RimFridge_SingleRefrigerator.label>
@@ -23,3 +23,5 @@
   <Frame_RimFridge_QuadRefrigerator.description>これに保存される鮮度のあるアイテムは、腐敗しません。</Frame_RimFridge_QuadRefrigerator.description>
 
 </LanguageData>
+
+

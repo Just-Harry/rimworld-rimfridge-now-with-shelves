@@ -39,3 +39,4 @@ Thanks to everyone who's added/edited code!
 * MrMatsay – Fixed an issue which could cause `InvalidCastException`s to be thrown.
 
 Many thanks go towards the original authors of this mod: Vendan, and then Kiame Vivacity.
+

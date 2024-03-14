@@ -6,7 +6,7 @@
 	<DesignatorDropdownGroupDef>
 		<defName>WallFridgeDesignatorDropdownDef</defName>
 	</DesignatorDropdownGroupDef>
-	
+
 	<ThingDef Name="FridgeBase" Abstract="True">
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<thingClass>RimFridge.RimFridge_Building</thingClass>
@@ -75,7 +75,7 @@
 				<glowRadius>2.5</glowRadius>
 				<glowColor>(89,188,255,0)</glowColor>
 			</li>
-			<li Class="RimFridge.CompProperties_Refrigerator"> 
+			<li Class="RimFridge.CompProperties_Refrigerator">
 				<drinksBestCold>
 					<li>Beer</li>
 					<li>RC2_Ale</li>
@@ -105,3 +105,4 @@
 		<drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
 	</ThingDef>
 </Defs>
+

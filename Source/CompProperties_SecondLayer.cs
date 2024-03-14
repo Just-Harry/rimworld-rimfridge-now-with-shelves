@@ -1,18 +1,19 @@
-﻿using Verse;
+using Verse;
 
 namespace RimFridge
 {
-    internal class CompProperties_SecondLayer : CompProperties
-    {
-        public GraphicData graphicData = null;
+	internal class CompProperties_SecondLayer : CompProperties
+	{
+		public GraphicData graphicData = null;
 
-        public AltitudeLayer altitudeLayer = AltitudeLayer.MoteOverhead;
+		public AltitudeLayer altitudeLayer = AltitudeLayer.MoteOverhead;
 
-        public float Altitude => Altitudes.AltitudeFor(altitudeLayer);
+		public float Altitude => Altitudes.AltitudeFor(altitudeLayer);
 
-        public CompProperties_SecondLayer()
-        {
-            compClass = typeof(CompSecondLayer);
-        }
-    }
+		public CompProperties_SecondLayer ()
+		{
+			compClass = typeof(CompSecondLayer);
+		}
+	}
 }
+

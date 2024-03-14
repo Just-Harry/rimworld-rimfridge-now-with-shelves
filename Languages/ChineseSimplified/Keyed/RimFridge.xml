@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <RimFridge.TargetTemperature>目前温度</RimFridge.TargetTemperature>
   <RimFridge.CurrentTemperature>当前温度</RimFridge.CurrentTemperature>
@@ -6,3 +6,5 @@
   <RimFridge.RenameTheRefrigerator>重命名此冰箱</RimFridge.RenameTheRefrigerator>
 
 </LanguageData>
+
+

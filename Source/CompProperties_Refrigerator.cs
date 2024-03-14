@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Verse;
 
 namespace RimFridge
 {
-    public class CompProperties_Refrigerator : CompProperties
-    {
+	public class CompProperties_Refrigerator : CompProperties
+	{
 
-        public CompProperties_Refrigerator()
-        {
-            compClass = typeof(CompRefrigerator);
-        }
+		public CompProperties_Refrigerator ()
+		{
+			compClass = typeof(CompRefrigerator);
+		}
 
-        public List<string> drinksBestCold;
-        public float defaultDesiredTemperature = -5f;
-        public bool findAllRottableForFilters;
-    }
+		public List<string> drinksBestCold;
+		public float defaultDesiredTemperature = -5f;
+		public bool findAllRottableForFilters;
+	}
 }
+

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <RimFridge_WallRefrigerator.label>встроенный холодильник (две камеры)</RimFridge_WallRefrigerator.label>
   <RimFridge_WallRefrigerator.description>Бытовой холодильник, встроенный в стену. Может быть использован как стена, разделяет помещения.</RimFridge_WallRefrigerator.description>
@@ -14,3 +14,4 @@
   <RimFridge_SingleWallRefrigerator_Frame.label>встроенный однокамерный холодильник (строится)</RimFridge_SingleWallRefrigerator_Frame.label>
   <RimFridge_SingleWallRefrigerator_Frame.description>Бытовой холодильник, встроенный в стену. Может быть использован как стена, разделяет помещения.</RimFridge_SingleWallRefrigerator_Frame.description>
 </LanguageData>
+

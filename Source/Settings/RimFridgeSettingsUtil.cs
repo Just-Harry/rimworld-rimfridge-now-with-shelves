@@ -1,13 +1,13 @@
-﻿using RimWorld;
+using RimWorld;
 using System.Linq;
 using Verse;
 
 namespace RimFridge
 {
-    internal static class RimFridgeSettingsUtil
-    {
-        public static void ApplyFactor (float newFactor)
-        {
+	internal static class RimFridgeSettingsUtil
+	{
+		public static void ApplyFactor (float newFactor)
+		{
 			var powerFactorSetting = DefDatabase<ResearchProjectDef>.GetNamed("RimFridge_PowerFactorSetting");
 
 			foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.defName.StartsWith("RimFridge")))
@@ -41,6 +41,7 @@ namespace RimFridge
 				researcher: null,
 				doCompletionLetter: false
 			);
-        }
-    }
+		}
+	}
 }
+

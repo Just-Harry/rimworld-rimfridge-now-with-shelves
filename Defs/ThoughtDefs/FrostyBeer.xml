@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
 	<ThoughtDef>
 		<defName>FrostyBeer</defName>
 		<durationDays>0.5</durationDays>
@@ -13,5 +12,5 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-
 </Defs>
+

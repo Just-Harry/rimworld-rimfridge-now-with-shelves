@@ -1,5 +1,5 @@
-﻿using RimWorld;
-﻿using HarmonyLib;
+using RimWorld;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,9 @@ using Verse;
 
 namespace RimFridge
 {
-    public class SettingsController : Mod
-    {
-        public SettingsController(ModContentPack content) : base(content)
+	public class SettingsController : Mod
+	{
+		public SettingsController (ModContentPack content) : base(content)
 		{
 			base.GetSettings<Settings>();
 
@@ -34,10 +34,10 @@ namespace RimFridge
 			}
 		}
 
-        public override string SettingsCategory()
-        {
-            return "RimFridge";
-        }
+		public override string SettingsCategory ()
+		{
+			return "RimFridge";
+		}
 
 		internal class GUIState
 		{
@@ -47,8 +47,8 @@ namespace RimFridge
 
 		internal GUIState guiState = null;
 
-        public override void DoSettingsWindowContents(Rect rect)
-        {
+		public override void DoSettingsWindowContents (Rect rect)
+		{
 			if (guiState == null)
 			{
 				guiState = new();
@@ -57,28 +57,30 @@ namespace RimFridge
 				);
 			}
 
-            GUI.BeginGroup(new Rect(0, 60, 800, 600));
-            Text.Font = GameFont.Small;
-            Widgets.Label(new Rect(0, 40, 300, 20), "Modify Base Power Requirement" + ":");
-            Settings.PowerFactor.AsString = Widgets.TextField(new Rect(320, 40, 100, 20), Settings.PowerFactor.AsString);
-            if (Widgets.ButtonText(new Rect(320, 65, 100, 20), "Apply"))
-            {
-                if (Settings.PowerFactor.ValidateInput())
-                {
-                    GetSettings<Settings>().Write();
-                    Messages.Message("New Power Factor Applied", MessageTypeDefOf.PositiveEvent);
+			GUI.BeginGroup(new Rect(0, 60, 800, 600));
+			Text.Font = GameFont.Small;
+			Widgets.Label(new Rect(0, 40, 300, 20), "Modify Base Power Requirement" + ":");
+			Settings.PowerFactor.AsString = Widgets.TextField(new Rect(320, 40, 100, 20), Settings.PowerFactor.AsString);
 
-                    if (Current.Game != null)
-                    {
-                        RimFridgeSettingsUtil.ApplyFactor(Settings.PowerFactor.AsFloat);
-                    }
-                }
-            }
-            Widgets.Label(new Rect(20, 100, 400, 30), "<new power usage> = <input value> * <original power usage>");
-            Widgets.CheckboxLabeled(new Rect(0, 140, 200, 30), "Act as Trade Beacon:", ref Settings.ActAsBeacon);
+			if (Widgets.ButtonText(new Rect(320, 65, 100, 20), "Apply"))
+			{
+				if (Settings.PowerFactor.ValidateInput())
+				{
+					GetSettings<Settings>().Write();
+					Messages.Message("New Power Factor Applied", MessageTypeDefOf.PositiveEvent);
 
-            if (ShouldShowCompatibilitySettings)
-            {
+					if (Current.Game != null)
+					{
+						RimFridgeSettingsUtil.ApplyFactor(Settings.PowerFactor.AsFloat);
+					}
+				}
+			}
+
+			Widgets.Label(new Rect(20, 100, 400, 30), "<new power usage> = <input value> * <original power usage>");
+			Widgets.CheckboxLabeled(new Rect(0, 140, 200, 30), "Act as Trade Beacon:", ref Settings.ActAsBeacon);
+
+			if (ShouldShowCompatibilitySettings)
+			{
 				Widgets.DrawMenuSection(new Rect(0, 180, 800, 370));
 
 				Widgets.Label(new Rect(10, 180, 790, 30), "RimFridge.Compatibility".Translate());
@@ -101,8 +103,8 @@ namespace RimFridge
 				Widgets.EndScrollView();
 			}
 
-            GUI.EndGroup();
-        }
+			GUI.EndGroup();
+		}
 
 		public override void WriteSettings ()
 		{
@@ -127,12 +129,12 @@ namespace RimFridge
 		{
 			get => Current.Game == null;
 		}
-    }
+	}
 
-    internal class Settings : ModSettings
-    {
-        public static readonly FloatInput PowerFactor = new FloatInput("Base Power Factor");
-        public static bool ActAsBeacon = false;
+	internal class Settings : ModSettings
+	{
+		public static readonly FloatInput PowerFactor = new FloatInput("Base Power Factor");
+		public static bool ActAsBeacon = false;
 		/* Making this a List causes access to be O(n), but we want to maintain
 			the order the patches were loaded in. */
 		public static List<ApplicationOfPatch> forcedApplicationOfPatches = new();
@@ -149,17 +151,18 @@ namespace RimFridge
 			}
 		}
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look(ref (PowerFactor.AsString), "RimFridge.PowerFactor", "1.00", false);
-            Scribe_Values.Look(ref ActAsBeacon, "RimFridge.ActAsBeacon", false, false);
-            Scribe_Collections.Look(ref forcedApplicationOfPatches, "RimFridge.ForcedApplicationOfPatches", LookMode.Deep);
+		public override void ExposeData ()
+		{
+			base.ExposeData();
+			Scribe_Values.Look(ref(PowerFactor.AsString), "RimFridge.PowerFactor", "1.00", false);
+			Scribe_Values.Look(ref ActAsBeacon, "RimFridge.ActAsBeacon", false, false);
+			Scribe_Collections.Look(ref forcedApplicationOfPatches, "RimFridge.ForcedApplicationOfPatches", LookMode.Deep);
 
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            {
-            	forcedApplicationOfPatches ??= new();
-            }
-        }
-    }
+			if (Scribe.mode == LoadSaveMode.PostLoadInit)
+			{
+				forcedApplicationOfPatches ??= new();
+			}
+		}
+	}
 }
+

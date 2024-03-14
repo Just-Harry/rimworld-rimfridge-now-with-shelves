@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 	<RimFridge.TargetTemperature>Target Temperature</RimFridge.TargetTemperature>
 	<RimFridge.CurrentTemperature>Current Temperature</RimFridge.CurrentTemperature>
@@ -9,3 +9,4 @@
 	<RimFridge.Compatibility>Compatibility</RimFridge.Compatibility>
 	<RimFridge.ForceApplicationOfThesePatches>Force the application of these patches for other versions of RimFridge.</RimFridge.ForceApplicationOfThesePatches>
 </LanguageData>
+

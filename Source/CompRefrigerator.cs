@@ -13,7 +13,6 @@ namespace RimFridge
 		public float desiredTemp;
 		public float currentTemp = 21f;
 
-		public string buildingLabel = "";
 		public StorageSettings fixedStorageSettings;
 		public CompPowerTrader powerTrader => parent.GetComp<CompPowerTrader>();
 		private CompRefuelable refuelable => parent.GetComp<CompRefuelable>();
@@ -32,14 +31,6 @@ namespace RimFridge
 				yield return g;
 			}
 
-			yield return new Command_Action
-			{
-				action = delegate { Find.WindowStack.Add(new Dialog_RenameFridge(this)); },
-				defaultLabel = "CommandRenameZoneLabel".Translate(),
-				defaultDesc = "RimFridge.RenameTheRefrigerator".Translate(),
-				hotKey = KeyBindingDefOf.Misc1,
-				icon = ContentFinder<Texture2D>.Get("UI/Commands/RenameZone", true),
-			};
 			yield return new Command_Action
 			{
 				action = delegate { InterfaceChangeTargetTemperature(offsetN10); },
@@ -84,12 +75,6 @@ namespace RimFridge
 
 		public List<string> drinksBestCold => ((CompProperties_Refrigerator) props).drinksBestCold;
 		public float defaultDesiredTemperature => ((CompProperties_Refrigerator) props).defaultDesiredTemperature;
-
-		public override string TransformLabel (string label)
-		{
-			return buildingLabel == "" ? label : buildingLabel;
-		}
-
 
 		private void InterfaceChangeTargetTemperature (float offset)
 		{
@@ -238,15 +223,19 @@ namespace RimFridge
 			Scribe_Values.Look(ref currentTemp, "currentTemp", 21f, false);
 			Scribe_Values.Look(ref desiredTemp, "desiredTemp", defaultDesiredTemperature, false);
 
-			string label = parent.Label;
-
-			if (Scribe.mode == LoadSaveMode.LoadingVars || (Scribe.mode == LoadSaveMode.Saving && buildingLabel != null))
-			{
-				Scribe_Values.Look(ref buildingLabel, "buildingLabel", "", false);
-			}
-
 			if (Scribe.mode == LoadSaveMode.LoadingVars)
 			{
+				string buildingLabel = null;
+				Scribe_Values.Look(ref buildingLabel, "buildingLabel");
+
+				/* Versions older than 1.2.0 of RimFridge handled the fridge label via this comp, rather
+				   than via the fridge buildings. So, if this comp was previously renamed we migrate its
+				   name to its parent RimFridge (if it is a RimFridge). */
+				if (buildingLabel != null && this.parent is RimFridge_Building rimFridge)
+				{
+					rimFridge.fridgeLabel = buildingLabel;
+				}
+
 				CreateFixedStorageSettings();
 			}
 		}

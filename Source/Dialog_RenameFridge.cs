@@ -4,18 +4,17 @@ using Verse;
 
 namespace RimFridge
 {
-	public class Dialog_RenameFridge : Dialog_Rename
+	public class Dialog_RenameFridge : Dialog_RenameBuildingStorage
 	{
-		public Dialog_RenameFridge (CompRefrigerator fridge)
+		public Dialog_RenameFridge (IRenameable fridge) : base(fridge)
 		{
 			forcePause = true;
 			doCloseX = true;
 			closeOnClickedOutside = true;
 			absorbInputAroundWindow = true;
 			closeOnClickedOutside = true;
-			curName = fridge.parent.Label;
-			this.fridge = fridge;
 		}
+
 		public override Vector2 InitialSize
 		{
 			get
@@ -24,15 +23,6 @@ namespace RimFridge
 				o.y += 50f;
 				return o;
 			}
-		}
-
-		private readonly CompRefrigerator fridge;
-
-		protected override void SetName (string name)
-		{
-			fridge.buildingLabel = name;
-			//Messages.Message("RimFridge_GainsName".Translate(this.fridge.parent.def.label, fridge.parent.Label),
-			//                 MessageTypeDefOf.TaskCompletion, false);
 		}
 
 		protected override AcceptanceReport NameIsValid (string name)
@@ -57,8 +47,19 @@ namespace RimFridge
 				)
 			)
 			{
-				SetName("");
+
+				this.curName = null;
+				this.OnRenamed(null);
+
 				Find.WindowStack.TryRemove(this, true);
+			}
+		}
+
+		protected override void OnRenamed (string name)
+		{
+			if ((name == null || name.Length == 0) && this.renaming != null)
+			{
+				this.renaming.RenamableLabel = null;
 			}
 		}
 	}

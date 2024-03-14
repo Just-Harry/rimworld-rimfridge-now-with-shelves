@@ -13,15 +13,32 @@ using Verse.Sound;
 
 namespace RimFridge
 {
-	[HarmonyPatch(typeof(ReachabilityUtility), "CanReach")]
-	static class Patch_ReachabilityUtility_CanReach
+	[HarmonyPatch(
+		typeof(Reachability),
+		nameof(Reachability.CanReach),
+		new[] {typeof(IntVec3), typeof(LocalTargetInfo), typeof(PathEndMode), typeof(TraverseParms)})
+	]
+	public static class EnsureThatItemsInAFridgeCanBeReachedByPawns
 	{
-		static void Prefix (Pawn pawn, LocalTargetInfo dest, ref PathEndMode peMode)
+		/* At first glance this patch looks as though it's for path-finding.
+		   But it's really for allowing items in fridges to be considered reachable
+		   in the menu that pops up when an item in a fridge is right-clicked. */
+
+		public static readonly AccessTools.FieldRef<Reachability, Map> mapOfReachability = (
+			AccessTools.FieldRefAccess<Reachability, Map>("map")
+		);
+
+		[HarmonyPrefix]
+		public static void SetPathEndModeSuchThatFridgeCanBeReached (
+			Reachability __instance,
+			LocalTargetInfo dest,
+			ref PathEndMode peMode
+		)
 		{
 			if (
-				   dest.Thing?.def.category == ThingCategory.Item
-				&& pawn?.Map != null
-				&& FridgeCache.GetFridgeCache(pawn.Map)?.HasFridgeAt(dest.Cell) == true
+				   peMode != PathEndMode.Touch
+				&& dest.Thing?.def.category == ThingCategory.Item
+				&& FridgeCache.GetFridgeCache(mapOfReachability(__instance))?.HasFridgeAt(dest.Cell) == true
 			)
 			{
 				peMode = PathEndMode.Touch;

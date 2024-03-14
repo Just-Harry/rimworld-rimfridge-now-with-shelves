@@ -28,7 +28,7 @@ namespace RimFridge
 				}
 			};
 
-			patch(typeof(Patch_ReachabilityUtility_CanReach));
+			patch(typeof(EnsureThatItemsInAFridgeCanBeReachedByPawns));
 			patch(typeof(Patch_Thing_AmbientTemperature));
 			patch(typeof(Patch_PassingShip_TryOpenComms));
 			patch(typeof(EnsureThatPrisonersGetFoodFromFridgesInPrisons));

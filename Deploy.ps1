@@ -37,7 +37,7 @@ function Build-Version ($Version)
 	$VersionFolder = Join-Path $BuiltModPath $Version
 
 	New-Item -Force -ItemType Directory -Path $VersionFolder
-	Copy-Item -Recurse -Force -Path (Join-Path $BuildPath $LastestVersion 'RimFridge/*') -Destination $VersionFolder
+	Copy-Item -Recurse -Force -Path (Join-Path $BuildPath $Version 'RimFridge/*') -Destination $VersionFolder
 
 	$VersionFolder
 }

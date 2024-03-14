@@ -6,7 +6,7 @@ Ideal for use in dining rooms, freeing up labour from feeding prisoners, or keep
 
 Base RimFridge comes in 1x1, 1x2, and 2x2 versions.  A "Wall" version of the 1x1 and 1x2 can be used to divide rooms and separate the kitchen from the dining area, or create hard, impassible aisles of freezers.  Wall RimFridges are accessible by pawns from both sides.
 
-Each cell of a RimFridge can store three stacks of items, much like shelves in version 1.4 of RimWorld.
+Each cell of a RimFridge can store three stacks of items, much like shelves since version 1.4 of RimWorld.
 
 Beer and some other alcohols such as RimCusine 2's Stout, Ale, Grog and Cider gain a "Frosty" moodlet if chilled in a RimFridge and drunk by a colonist, because who doesn't like a cold one after a long day's work?  Additional items from other mods can be easily added to the XML files in Defs\ThingDefs_Buildings.
 

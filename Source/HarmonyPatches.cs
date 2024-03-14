@@ -29,23 +29,6 @@ namespace RimFridge
 		}
 	}
 
-	/*[HarmonyPriority(Priority.Last)]
-	[HarmonyPatch(typeof(CompRottable), "Active", MethodType.Getter)]
-	static class Patch_CompRottable_Freeze
-	{
-	    static void Postfix (ref bool __result, ThingComp __instance)
-	    {
-	        if (__instance.parent?.Map == null)
-	            return;
-
-	        if (FridgeCache.TryGetFridge(__instance.parent.Position, __instance.parent.Map, out CompRefrigerator fridge) &&
-	            fridge != null && fridge.ShouldBeActive)
-	        {
-	            __result = false;
-	        }
-	    }
-	}*/
-
 	[HarmonyBefore(new string[] {"io.github.dametri.thermodynamicscore"})]
 	[HarmonyPriority(Priority.First)]
 	[HarmonyPatch(typeof(Thing), "AmbientTemperature", MethodType.Getter)]
@@ -468,81 +451,5 @@ namespace RimFridge
 			}
 		}
 	}
-
-	/*
-	    [HarmonyPatch(typeof(Dialog_BillConfig), "DoWindowContents", new Type[] {typeof(Rect)})]
-	    public static class Patch_Dialog_BillConfig_DoWindowContents
-	    {
-	        public static IEnumerable<CodeInstruction> Transpiler (IEnumerable<CodeInstruction> instructions)
-	        {
-	            List<CodeInstruction> instructionList = instructions.ToList();
-	            FieldInfo billFI = typeof(Dialog_BillConfig).GetField("bill", BindingFlags.NonPublic | BindingFlags.Instance);
-
-	            bool found = false;
-	            for (int i = 0; i < instructionList.Count; ++i)
-	            {
-	                if (instructionList[i].opcode == OpCodes.Ldsfld &&
-	                    instructionList[i].operand?.ToString() == "RimWorld.BillStoreModeDef SpecificStockpile")
-	                {
-	                    found = true;
-
-	                    yield return new CodeInstruction (OpCodes.Ldfld, billFI);
-	                    yield return new CodeInstruction (OpCodes.Ldloc_S, 15);
-	                    yield return new CodeInstruction (OpCodes.Ldloc_S, 13);
-	                    yield return new CodeInstruction (
-	                        OpCodes.Call,
-	                        typeof (Patch_Dialog_BillConfig_DoWindowContents).GetMethod(
-	                            nameof(Patch_Dialog_BillConfig_DoWindowContents.AddStorageBuildings), BindingFlags.Static | BindingFlags.NonPublic));
-	                }
-	                yield return instructionList[i];
-	            }
-
-	            if (!found)
-	            {
-	                Log.Error("NOT FOUND!!!");
-	            }
-	        }
-
-	        private static bool CanPossiblyStoreInBuildingStorage (Bill_Production bill, Building_Storage s)
-	        {
-	            var recipe = bill.recipe;
-	            if (!recipe.WorkerCounter.CanCountProducts(bill))
-	            {
-	                return true;
-	            }
-	            return s.GetStoreSettings().AllowedToAccept(recipe.products[0].thingDef);
-	        }
-
-	        private static void AddStorageBuildings (Bill_Production bill, BillStoreModeDef item, List<FloatMenuOption> list)
-	        {
-	            List<SlotGroup> allGroupsListInPriorityOrder = bill.billStack.billGiver.Map.haulDestinationManager.AllGroupsListInPriorityOrder;
-	            sb.AppendLine($"allGroupsListInPriorityOrder is null: {allGroupsListInPriorityOrder == null}");
-	            sb.AppendLine($"count is null: {allGroupsListInPriorityOrder.Count}");
-	            int count = allGroupsListInPriorityOrder.Count;
-	            for (int i = 0; i < count; i++)
-	            {
-	                SlotGroup group = allGroupsListInPriorityOrder[i];
-	                sb.AppendLine($"{i}   group is null: {group == null}");
-	                sb.AppendLine($"{i}   parent is null: {group.parent == null}");
-
-	                if (group.parent is Building_Storage s)
-	                {
-	                    if (!CanPossiblyStoreInBuildingStorage(bill, s))
-	                    {
-	                        list.Add(new FloatMenuOption (string.Format("{0} ({1})", string.Format(item.LabelCap, group.parent.SlotYielderLabel()), "IncompatibleLower".Translate()), null));
-	                    }
-	                    else
-	                    {
-	                        list.Add(new FloatMenuOption (string.Format(item.LabelCap, group.parent.SlotYielderLabel()), delegate
-	                        {
-	                            bill.SetStoreMode(BillStoreModeDefOf.SpecificStockpile, s);
-	                        }));
-	                    }
-	                }
-	            }
-
-	            Log.ErrorOnce(sb.ToString(), sb.GetHashCode());
-	        }
-	    }*/
 }
 

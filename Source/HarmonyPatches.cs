@@ -80,7 +80,6 @@ namespace RimFridge
 				return;
 
 			List<Thing> things = null;
-			Log.Message(playerNegotiator.Name.ToStringFull);
 
 			if (playerNegotiator != null && playerNegotiator.Map != null)
 			{

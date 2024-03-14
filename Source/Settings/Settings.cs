@@ -31,7 +31,7 @@ namespace RimFridge
 			patch(typeof(Patch_ReachabilityUtility_CanReach));
 			patch(typeof(Patch_Thing_AmbientTemperature));
 			patch(typeof(Patch_PassingShip_TryOpenComms));
-			patch(typeof(Patch_FoodUtility_TryFindBestFoodSourceFor));
+			patch(typeof(EnsureThatPrisonersGetFoodFromFridgesInPrisons));
 			patch(typeof(DisplayStackedItemsNicelyInFridges.MungeTrueCenterOfItemsInFridges));
 			patch(typeof(DisplayStackedItemsNicelyInFridges.MakeTheStackCountLabelsReadable));
 			patch(typeof(HacksForCompatibility.ForceTheApplicationOfSomePatches));

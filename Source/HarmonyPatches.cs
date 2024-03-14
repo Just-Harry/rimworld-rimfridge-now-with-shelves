@@ -100,28 +100,10 @@ namespace RimFridge
 		}
 	}
 
-	[HarmonyPatch(typeof(FoodUtility), "TryFindBestFoodSourceFor_NewTemp")]
-	static class Patch_FoodUtility_TryFindBestFoodSourceFor
+	[HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.TryFindBestFoodSourceFor))]
+	static class EnsureThatPrisonersGetFoodFromFridgesInPrisons
 	{
-		static void Postfix (
-			ref bool __result,
-			Pawn getter,
-			Pawn eater,
-			bool desperate,
-			ref Thing foodSource,
-			ref ThingDef foodDef,
-			bool canRefillDispenser,
-			bool canUseInventory,
-			bool canUsePackAnimalInventory,
-			bool allowForbidden,
-			bool allowCorpse,
-			bool allowSociallyImproper,
-			bool allowHarvest,
-			bool forceScanWholeMap,
-			bool ignoreReservations,
-			bool calculateWantedStackCount,
-			FoodPreferability minPrefOverride
-		)
+		static void Postfix (ref bool __result, Pawn getter, Pawn eater, ref Thing foodSource, ref ThingDef foodDef)
 		{
 			if (
 				   __result == false
